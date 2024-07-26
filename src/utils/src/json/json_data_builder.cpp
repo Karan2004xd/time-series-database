@@ -2,7 +2,7 @@
 
 void JsonDataBuilder::setJsonParamValue__(const std::string &key, const JsonGenericParamValue &value) {
   if (jsonGenericParams__.find(key) != jsonGenericParams__.end()) return ; // key is already present
-  jsonGenericParams__.insert({key, value});
+  jsonGenericParams__[key] = value;
 }
 
 JsonDataBuilder *JsonDataBuilder::set_(const std::string &key, const JsonGenericParamsVector &values) {

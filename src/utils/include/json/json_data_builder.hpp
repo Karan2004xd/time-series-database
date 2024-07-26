@@ -6,11 +6,9 @@
 #include <vector>
 
 class JsonDataBuilder {
-private:
+public:
   typedef std::vector<std::variant<std::string, long int, long double>> JsonGenericParamsVector;
   typedef std::variant<std::string, long int, long double, JsonGenericParamsVector> JsonGenericParamValue;
-
-public:
   typedef std::unordered_map<std::string, JsonGenericParamValue> JsonGenericParams;
 
 private:

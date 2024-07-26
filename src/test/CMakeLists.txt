@@ -6,6 +6,7 @@ include_directories(${GTEST_INCLUDE_DIRS})
 
 set(TEST_SOURCES
   "./json/json_data_builder_test.cpp"
+  "./json/json_parser_test.cpp"
 )
 
 add_executable(run_tests ${TEST_SOURCES})
