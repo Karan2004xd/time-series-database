@@ -1,4 +1,5 @@
 #include "../../include/json/json_parser.hpp"
+#include "../../include/logs/logger.hpp"
 #include <rapidjson/writer.h>
 #include <rapidjson/stringbuffer.h>
 
@@ -86,7 +87,7 @@ JsonDataBuilder::JsonGenericParams JsonParser::decodeToDataMap_(std::string &jso
   document.Parse(jsonString.c_str());
 
   if (document.HasParseError()) {
-    // Log for an error in parsing the json string
+    Logger::log_(Logger::WARNING) << "(decodeToDataMap_) Failed to parse the jsonString [" << jsonString << "]\n";
     return {};
   }
 

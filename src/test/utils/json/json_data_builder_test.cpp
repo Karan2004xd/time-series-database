@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 #include <limits>
-#include "../../utils/include/json/json_data_builder.hpp"
+#include "../../../utils/include/json/json_data_builder.hpp"
 
 TEST(JsonDataBuilderSuite, SingleValueTest) {
   JsonDataBuilder builder;

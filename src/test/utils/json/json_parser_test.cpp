@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "../../utils/include/json/json_parser.hpp"
+#include "../../../utils/include/json/json_parser.hpp"
 
 TEST(JsonParserSuite, EncodingOfAllTypeTest) {
   JsonParser parser;

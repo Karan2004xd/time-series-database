@@ -1,0 +1,4 @@
+[2024-07-27 03:21:22.409026] [0x000073088cad34c0] [warning] (decodeToDataMap_) Failed to parse the jsonString [{"key""value"}]
+[2024-07-27 03:21:22.409159] [0x000073088cad34c0] [info] Hello world
+[2024-07-27 03:21:22.409172] [0x000073088cad34c0] [warning] Hello world, 5 + 5 = 10
+[2024-07-27 03:21:22.409177] [0x000073088cad34c0] [error] Hello world again!
