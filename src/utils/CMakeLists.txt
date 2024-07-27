@@ -8,6 +8,8 @@ add_library(${PROJECT_NAME}
   "./src/json/json_data_builder.cpp"
   "./src/json/json_parser.cpp"
   "./src/logs/logger.cpp"
+  "./src/query/simple_query_parser.cpp"
+  "./src/query/query_parser_params.cpp"
 )
 
 target_link_directories(${PROJECT_NAME} PRIVATE "./include")
