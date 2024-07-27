@@ -1,4 +1,5 @@
-[2024-07-27 17:10:07.162620] [0x00007641a10b44c0] [warning] (decodeToDataMap_) Failed to parse the jsonString [{"key""value"}]
-[2024-07-27 17:10:07.163443] [0x00007641a10b44c0] [info] Hello world
-[2024-07-27 17:10:07.163524] [0x00007641a10b44c0] [warning] Hello world, 5 + 5 = 10
-[2024-07-27 17:10:07.163554] [0x00007641a10b44c0] [error] Hello world again!
+[2024-07-27 20:14:01.066975] [0x00007c506850f4c0] [warning] (decodeToDataMap_) Failed to parse the jsonString [{"key""value"}]
+[2024-07-27 20:14:01.067149] [0x00007c506850f4c0] [info] Hello world
+[2024-07-27 20:14:01.067167] [0x00007c506850f4c0] [warning] Hello world, 5 + 5 = 10
+[2024-07-27 20:14:01.067175] [0x00007c506850f4c0] [error] Hello world again!
+[2024-07-27 20:14:01.067295] [0x00007c506850f4c0] [error] (getInt_) Invalid type of value access

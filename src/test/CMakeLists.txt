@@ -9,6 +9,7 @@ set(TEST_SOURCES
   "./utils/json/json_parser_test.cpp"
   "./utils/logs/logger_test.cpp"
   "./utils/query/simple_query_parser_test.cpp"
+  "./utils/query/query_parser_value_test.cpp"
 )
 
 add_executable(run_tests ${TEST_SOURCES})

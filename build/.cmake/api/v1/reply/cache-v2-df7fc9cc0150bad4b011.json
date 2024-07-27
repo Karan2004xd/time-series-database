@@ -1402,54 +1402,6 @@
 			"value" : "/usr/lib/cmake/boost_thread-1.83.0"
 		},
 		{
-			"name" : "database_BINARY_DIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Value Computed by CMake"
-				}
-			],
-			"type" : "STATIC",
-			"value" : "/home/karan/Documents/Code/time-series-database/build/src/core/database"
-		},
-		{
-			"name" : "database_IS_TOP_LEVEL",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Value Computed by CMake"
-				}
-			],
-			"type" : "STATIC",
-			"value" : "OFF"
-		},
-		{
-			"name" : "database_LIB_DEPENDS",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Dependencies for the target"
-				}
-			],
-			"type" : "STATIC",
-			"value" : "general;utils;"
-		},
-		{
-			"name" : "database_SOURCE_DIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Value Computed by CMake"
-				}
-			],
-			"type" : "STATIC",
-			"value" : "/home/karan/Documents/Code/time-series-database/src/core/database"
-		},
-		{
 			"name" : "time_series_database_BINARY_DIR",
 			"properties" : 
 			[

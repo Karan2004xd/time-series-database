@@ -8,7 +8,7 @@
 class JsonDataBuilder {
 public:
   typedef std::vector<std::variant<std::string, long int, long double>> JsonGenericParamsVector;
-  typedef std::variant<std::string, long int, long double, JsonGenericParamsVector> JsonGenericParamValue;
+  typedef std::variant<std::monostate, std::string, long int, long double, JsonGenericParamsVector> JsonGenericParamValue;
   typedef std::unordered_map<std::string, JsonGenericParamValue> JsonGenericParams;
 
 private:
