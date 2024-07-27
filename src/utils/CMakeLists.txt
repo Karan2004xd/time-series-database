@@ -6,7 +6,7 @@ include_directories(${Boost_INCLUDE_DIR})
 
 add_library(${PROJECT_NAME}
   "./src/json/json_data_builder.cpp"
-  "./src/json/json_parser.cpp"
+  "./src/json/simple_json_parser.cpp"
   "./src/logs/logger.cpp"
   "./src/query/simple_query_parser.cpp"
   "./src/query/query_parser_value.cpp"

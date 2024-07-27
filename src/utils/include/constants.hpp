@@ -8,4 +8,7 @@ struct Constants {
   static constexpr int LOG_ROTATION_SIZE = 10 * 1024 * 1024; // 10MB
   static constexpr String LOG_FORMAT = "[%TimeStamp%] [%ThreadID%] [%Severity%] %Message%";
   static constexpr String MAIN_SYSTEM_LOG_DIRECTORY_NAME = "system_logs";
+
+  // database constants
+  static constexpr String DEFAULT_DIRECTORY = "/tmp/";
 };

@@ -6,11 +6,12 @@ include_directories(${GTEST_INCLUDE_DIRS})
 
 set(TEST_SOURCES
   "./utils/json/json_data_builder_test.cpp"
-  "./utils/json/json_parser_test.cpp"
+  "./utils/json/simple_json_parser_test.cpp"
   "./utils/logs/logger_test.cpp"
   "./utils/query/simple_query_parser_test.cpp"
   "./utils/query/query_parser_value_test.cpp"
+  "./core/database/rocksdb_data_repository_test.cpp"
 )
 
 add_executable(run_tests ${TEST_SOURCES})
-target_link_libraries(run_tests ${GTEST_LIBRARIES} GTest::GTest GTest::Main pthread utils)
+target_link_libraries(run_tests ${GTEST_LIBRARIES} GTest::GTest GTest::Main pthread database)

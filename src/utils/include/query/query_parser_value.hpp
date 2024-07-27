@@ -8,9 +8,7 @@ private:
 
   template <typename ValueType>
   void setValueHelper__(const ValueType &value) {
-    if (!std::holds_alternative<std::monostate>(value__)) {
-      value__ = value;
-    }
+    value__ = value;
   }
 
 public:
