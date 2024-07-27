@@ -1,4 +1,4 @@
-[2024-07-27 03:21:22.409026] [0x000073088cad34c0] [warning] (decodeToDataMap_) Failed to parse the jsonString [{"key""value"}]
-[2024-07-27 03:21:22.409159] [0x000073088cad34c0] [info] Hello world
-[2024-07-27 03:21:22.409172] [0x000073088cad34c0] [warning] Hello world, 5 + 5 = 10
-[2024-07-27 03:21:22.409177] [0x000073088cad34c0] [error] Hello world again!
+[2024-07-27 12:15:12.670822] [0x000075a54aeef4c0] [warning] (decodeToDataMap_) Failed to parse the jsonString [{"key""value"}]
+[2024-07-27 12:15:12.671902] [0x000075a54aeef4c0] [info] Hello world
+[2024-07-27 12:15:12.671941] [0x000075a54aeef4c0] [warning] Hello world, 5 + 5 = 10
+[2024-07-27 12:15:12.671965] [0x000075a54aeef4c0] [error] Hello world again!
