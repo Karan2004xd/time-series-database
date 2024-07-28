@@ -7,6 +7,10 @@
 class SimpleQueryParser : public QueryParser, protected SimpleJsonParser {
 private:
   std::unordered_map<std::string, QueryParserValue> queryData__;
+  std::vector<std::string> queryKeys__;
+  std::vector<QueryParserValue> queryValues__;
+
+  void setQueryMetadata();
   
 public:
   SimpleQueryParser() {}
@@ -14,4 +18,10 @@ public:
 
   void parse_(std::string &jsonString) override;
   QueryParserValue getKeyValue_(const std::string &key) override;
+
+  const std::vector<std::string> &getAllKeys_() const override;
+  const std::vector<QueryParserValue> &getAllValues_() const override;
+
+  const std::unordered_map<std::string, QueryParserValue> &getAllKeysAndValues_() const { return queryData__;}
+  const size_t getSize() const { return queryData__.size(); }
 };

@@ -3,6 +3,7 @@ project(database)
 
 add_library(${PROJECT_NAME}
   "./src/rocksdb_data_repository.cpp"
+  "./src/horizontal_data_indexer.cpp"
 )
 
 target_link_directories(${PROJECT_NAME} PRIVATE "./include")

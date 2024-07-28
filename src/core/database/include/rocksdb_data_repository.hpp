@@ -22,6 +22,8 @@ private:
                               const std::string &key);
 
 public:
+  RocksDBDataRepository();
+
   void addData_(const std::string &key, const QueryParserValue &value, const std::string &db) override;
   QueryParserValue getData_(const std::string &key, const std::string &db) override;
   void deleteData_(const std::string &key, const std::string &db) override;

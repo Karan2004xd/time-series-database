@@ -1,6 +1,12 @@
 #include "../include/rocksdb_data_repository.hpp"
 #include "../../../utils/include/constants.hpp"
 #include "../../../utils/include/logs/logger.hpp"
+#include "../include/horizontal_data_indexer.hpp"
+
+RocksDBDataRepository::RocksDBDataRepository() {
+  HorizontalDataIndexer indexer;
+  subscribe_(&indexer);
+}
 
 void RocksDBDataRepository::checkStatus__(const rocksdb::Status &status) {
   if (status.ok()) {

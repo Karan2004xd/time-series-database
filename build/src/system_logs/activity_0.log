@@ -1,19 +1,18 @@
-[2024-07-28 11:28:12.903100] [0x000079918951cc00] [warning] (decodeToDataMap_) Failed to parse the jsonString [{"key""value"}]
-[2024-07-28 11:28:12.903587] [0x000079918951cc00] [error] (decodeToDataMap_) Found nesting at key (key_1)
-[2024-07-28 11:28:12.904040] [0x000079918951cc00] [info] Hello world
-[2024-07-28 11:28:12.904077] [0x000079918951cc00] [warning] Hello world, 5 + 5 = 10
-[2024-07-28 11:28:12.904088] [0x000079918951cc00] [error] Hello world again!
-[2024-07-28 11:28:12.904282] [0x000079918951cc00] [error] (getKeyValue_) key (key_1) was not found
-[2024-07-28 11:28:12.904359] [0x000079918951cc00] [error] (decodeToDataMap_) Found nesting at key (key_1)
-[2024-07-28 11:28:12.904712] [0x000079918951cc00] [error] (getInt_) Invalid type of value access
-[2024-07-28 11:28:13.084574] [0x000079918951cc00] [error] (checkStatus__) Status was not ok
-[2024-07-28 11:28:13.087358] [0x00007991474006c0] [error] (checkStatus__) Status was not ok
-[2024-07-28 11:28:13.087694] [0x00007991520006c0] [error] (checkStatus__) Status was not ok
-[2024-07-28 11:28:13.087753] [0x00007991516006c0] [error] (checkStatus__) Status was not ok
-(checkStatus__) Status was not ok
-[2024-07-28 11:28:13.087808] [0x000079915f4006c0] [error] 
-[2024-07-28 11:28:13.087859] [0x000079915e0006c0] [error] (checkStatus__) Status was not ok
-[2024-07-28 11:28:13.087907] [0x0000799147e006c0] [error] (checkStatus__) Status was not ok
-[2024-07-28 11:28:13.087959] [0x000079916aa006c0] [error] 
-[2024-07-28 11:28:13.088060] [0x0000799168c006c0] [error] (checkStatus__) Status was not ok
-[2024-07-28 11:28:13.088111] [0x000079915fe006c0] [error] (checkStatus__) Status was not ok
+[2024-07-28 15:44:28.949767] [0x00007177f1899c00] [warning] (decodeToDataMap_) Failed to parse the jsonString [{"key""value"}]
+[2024-07-28 15:44:28.949915] [0x00007177f1899c00] [error] (decodeToDataMap_) Found nesting at key (key_1)
+[2024-07-28 15:44:28.950003] [0x00007177f1899c00] [info] Hello world
+[2024-07-28 15:44:28.950015] [0x00007177f1899c00] [warning] Hello world, 5 + 5 = 10
+[2024-07-28 15:44:28.950020] [0x00007177f1899c00] [error] Hello world again!
+[2024-07-28 15:44:28.950081] [0x00007177f1899c00] [error] (getKeyValue_) key (key_1) was not found
+[2024-07-28 15:44:28.950111] [0x00007177f1899c00] [error] (decodeToDataMap_) Found nesting at key (key_1)
+[2024-07-28 15:44:28.950525] [0x00007177f1899c00] [error] (getInt_) Invalid type of value access
+[2024-07-28 15:44:29.116592] [0x00007177f1899c00] [error] (checkStatus__) Status was not ok
+[2024-07-28 15:44:29.117714] [0x00007177bb4006c0] [error] (checkStatus__) Status was not ok
+[2024-07-28 15:44:29.117741] [0x00007177baa006c0] [error] 
+[2024-07-28 15:44:29.117860] [0x00007177b8c006c0] [error] (checkStatus__) Status was not ok
+[2024-07-28 15:44:29.118164] [0x00007177d16006c0] [error] (checkStatus__) Status was not ok
+[2024-07-28 15:44:29.118330] [0x00007177ba0006c0] [error] (checkStatus__) Status was not ok
+[2024-07-28 15:44:29.118406] [0x00007177c6a006c0] [error] (checkStatus__) Status was not ok
+[2024-07-28 15:44:29.118447] [0x00007177c7e006c0] [error] 
+[2024-07-28 15:44:29.118749] [0x00007177d20006c0] [error] (checkStatus__) Status was not ok
+[2024-07-28 15:44:29.118775] [0x00007177c74006c0] [error] (checkStatus__) Status was not ok

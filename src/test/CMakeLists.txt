@@ -11,6 +11,7 @@ set(TEST_SOURCES
   "./utils/query/simple_query_parser_test.cpp"
   "./utils/query/query_parser_value_test.cpp"
   "./core/database/rocksdb_data_repository_test.cpp"
+  "./core/observer/observer_test.cpp"
 )
 
 add_executable(run_tests ${TEST_SOURCES})

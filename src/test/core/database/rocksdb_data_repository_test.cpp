@@ -80,6 +80,7 @@ TEST(RocksDBDataRepositorySuite, DeleteDataTest) {
 
 TEST(RocksDBDataRepositorySuite, InvalidDataAccessTest) {
   RocksDBDataRepository repo;
+  std::string filePath = "/tmp/test_db";
 
   repo.addData_("key", {"value"}, "test_db");
 
@@ -87,10 +88,13 @@ TEST(RocksDBDataRepositorySuite, InvalidDataAccessTest) {
   EXPECT_ANY_THROW({
     repo.getData_("key_1", "test_db");
   });
+
+  std::filesystem::remove_all(filePath);
 }
 
 TEST(RocksDBDataRepositorySuite, ConcurrentOperationTest) {
   RocksDBDataRepository repo;
+  std::string filePath = "/tmp/test_db";
 
   std::vector<std::future<void>> activeThreads;
 
@@ -111,4 +115,17 @@ TEST(RocksDBDataRepositorySuite, ConcurrentOperationTest) {
   for (const auto &thread : activeThreads) {
     thread.wait();
   }
+  std::filesystem::remove_all(filePath);
+}
+
+TEST(RocksDBDataRepositorySuite, ComplexDataQueryTest) {
+  RocksDBDataRepository repo;
+  std::string filePath = "/tmp/test_db";
+
+  std::string testString = "{\"key_4\":[20,34.89,\"hello\",\"world\"],\"key_3\":15.012,\"key_2\":10,\"key_1\":\"world\"}";
+
+  repo.addData_("key", {testString}, "test_db");
+  ASSERT_EQ(testString, repo.getData_("key", "test_db").getString_());
+
+  std::filesystem::remove_all(filePath);
 }
