@@ -9,6 +9,9 @@ private:
   rocksdb::DB *database__ {nullptr};
   SimpleJsonParser jsonParser__;
 
+  std::string databaseName__;
+  void setDatabaseName__(const std::string &name);
+
   void checkStatus__(const rocksdb::Status &status);
   void setupDatabase__(const std::string &db);
 
@@ -22,9 +25,8 @@ private:
                               const std::string &key);
 
 public:
-  RocksDBDataRepository();
-
   void addData_(const std::string &key, const QueryParserValue &value, const std::string &db) override;
   QueryParserValue getData_(const std::string &key, const std::string &db) override;
   void deleteData_(const std::string &key, const std::string &db) override;
+  const std::string getDatabaseName_() const override { return databaseName__; }
 };

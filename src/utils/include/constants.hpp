@@ -10,5 +10,8 @@ struct Constants {
   static constexpr String MAIN_SYSTEM_LOG_DIRECTORY_NAME = "system_logs";
 
   // database constants
-  static constexpr String DEFAULT_DIRECTORY = "/tmp/";
+  static constexpr String DEFAULT_DATABASE_DIRECTORY = "/tmp/";
+  static constexpr String METADATA_DATABASE_NAME = "metadata";
+  static constexpr String METADATA_FIELDS_DATASET_NAME = "fields";
+  static constexpr String FIELDS_JSON_FORMAT_KEY_NAME = "names";
 };

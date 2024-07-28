@@ -3,8 +3,7 @@
 #include <algorithm>
 #include <vector>
 #include <string>
-
-template <typename> struct Observer;
+#include "observer.hpp"
 
 template <typename ValueType> class Observable {
 private:

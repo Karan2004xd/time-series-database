@@ -24,4 +24,6 @@ public:
 
   const std::unordered_map<std::string, QueryParserValue> &getAllKeysAndValues_() const { return queryData__;}
   const size_t getSize() const { return queryData__.size(); }
+
+  const bool containesKey(const std::string &key) const;
 };

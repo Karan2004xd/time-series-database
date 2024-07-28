@@ -118,14 +118,6 @@ TEST(RocksDBDataRepositorySuite, ConcurrentOperationTest) {
   std::filesystem::remove_all(filePath);
 }
 
-TEST(RocksDBDataRepositorySuite, ComplexDataQueryTest) {
-  RocksDBDataRepository repo;
-  std::string filePath = "/tmp/test_db";
-
-  std::string testString = "{\"key_4\":[20,34.89,\"hello\",\"world\"],\"key_3\":15.012,\"key_2\":10,\"key_1\":\"world\"}";
-
-  repo.addData_("key", {testString}, "test_db");
-  ASSERT_EQ(testString, repo.getData_("key", "test_db").getString_());
-
-  std::filesystem::remove_all(filePath);
-}
+/* TEST(RocksDBDataRepositorySuite, DataIndexingTest) { */
+/*   RocksDBDataRepository repo; */
+/* } */

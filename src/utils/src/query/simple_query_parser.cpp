@@ -1,5 +1,13 @@
 #include "../../include/query/simple_query_parser.hpp"
 #include "../../include/logs/logger.hpp"
+#include <algorithm>
+
+void SimpleQueryParser::setQueryMetadata() {
+  for (const auto &key : queryData__) {
+    queryKeys__.push_back(key.first);
+    queryValues__.push_back(key.second);
+  }
+}
 
 void SimpleQueryParser::parse_(std::string &jsonString) {
   if (!queryData__.empty()) return ;
@@ -10,18 +18,12 @@ void SimpleQueryParser::parse_(std::string &jsonString) {
     QueryParserValue newValue {data.second};
     queryData__[data.first] = newValue;
   }
-}
 
-void SimpleQueryParser::setQueryMetadata() {
-  for (const auto &key : queryData__) {
-    queryKeys__.push_back(key.first);
-    queryValues__.push_back(key.second);
-  }
+  setQueryMetadata();
 }
 
 SimpleQueryParser::SimpleQueryParser(std::string &jsonString) {
   parse_(jsonString);
-  setQueryMetadata();
 }
 
 QueryParserValue SimpleQueryParser::getKeyValue_(const std::string &key) {
@@ -38,4 +40,8 @@ const std::vector<std::string> &SimpleQueryParser::getAllKeys_() const {
 
 const std::vector<QueryParserValue> &SimpleQueryParser::getAllValues_() const {
   return queryValues__;
+}
+
+const bool SimpleQueryParser::containesKey(const std::string &key) const {
+  return std::find(queryKeys__.begin(), queryKeys__.end(), key) != queryKeys__.end();
 }

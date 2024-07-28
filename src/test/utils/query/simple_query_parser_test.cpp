@@ -140,3 +140,11 @@ TEST(SimpleQueryParserSuite, GetSizeTest) {
 
   ASSERT_EQ(parser.getSize(), testSize);
 }
+
+TEST(SimpleQueryParserSuite, ContainsKeyTest) {
+  std::string testString = "{\"key_4\":[20,34.89,\"hello\",\"world\"],\"key_3\":15.012,\"key_2\":10,\"key_1\":\"world\"}";
+  SimpleQueryParser parser {testString};
+
+  ASSERT_TRUE(parser.containesKey("key_1"));
+  ASSERT_FALSE(parser.containesKey("key"));
+}

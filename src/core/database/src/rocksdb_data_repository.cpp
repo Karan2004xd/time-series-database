@@ -1,11 +1,10 @@
 #include "../include/rocksdb_data_repository.hpp"
 #include "../../../utils/include/constants.hpp"
 #include "../../../utils/include/logs/logger.hpp"
-#include "../include/horizontal_data_indexer.hpp"
 
-RocksDBDataRepository::RocksDBDataRepository() {
-  HorizontalDataIndexer indexer;
-  subscribe_(&indexer);
+void RocksDBDataRepository::setDatabaseName__(const std::string &name) {
+  if (!databaseName__.empty()) return ;
+  databaseName__ = name;
 }
 
 void RocksDBDataRepository::checkStatus__(const rocksdb::Status &status) {
@@ -69,10 +68,15 @@ void RocksDBDataRepository::setupDatabase__(const std::string &db) {
   options.IncreaseParallelism();
   options.OptimizeLevelStyleCompaction();
   
-  std::string filePath = std::string(Constants::DEFAULT_DIRECTORY) + db;
+  std::string filePath = db;
+
+  if (filePath.find(std::string(Constants::DEFAULT_DATABASE_DIRECTORY)) == std::string::npos) {
+    filePath = std::string(Constants::DEFAULT_DATABASE_DIRECTORY) + db;
+  }
   rocksdb::Status status = rocksdb::DB::Open(options, filePath, &database__);
 
   checkStatus__(status);
+  setDatabaseName__(db);
 }
 
 std::string RocksDBDataRepository::addDataHelper__(const QueryParserValue &value,
@@ -114,8 +118,9 @@ void RocksDBDataRepository::addData_(const std::string &key,
   setupDatabase__(db);
   rocksdb::Status status = database__->Put(rocksdb::WriteOptions(), key, addDataHelper__(value, key));
 
-  database__->Close();
   checkStatus__(status);
+  notify_(*this, databaseName__);
+  database__->Close();
 }
 
 QueryParserValue RocksDBDataRepository::getData_(const std::string &key, const std::string &db) {
