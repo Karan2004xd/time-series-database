@@ -1,21 +1,22 @@
-[2024-07-28 20:19:54.206247] [0x0000745406f2ac00] [warning] (decodeToDataMap_) Failed to parse the jsonString [{"key""value"}]
-[2024-07-28 20:19:54.206385] [0x0000745406f2ac00] [error] (decodeToDataMap_) Found nesting at key (key_1)
-[2024-07-28 20:19:54.206456] [0x0000745406f2ac00] [info] Hello world
-[2024-07-28 20:19:54.206467] [0x0000745406f2ac00] [warning] Hello world, 5 + 5 = 10
-[2024-07-28 20:19:54.206472] [0x0000745406f2ac00] [error] Hello world again!
-[2024-07-28 20:19:54.206524] [0x0000745406f2ac00] [error] (getKeyValue_) key (key_1) was not found
-[2024-07-28 20:19:54.206551] [0x0000745406f2ac00] [error] (decodeToDataMap_) Found nesting at key (key_1)
-[2024-07-28 20:19:54.207028] [0x0000745406f2ac00] [error] (getInt_) Invalid type of value access
-[2024-07-28 20:19:54.387332] [0x0000745406f2ac00] [error] (checkStatus__) Status was not ok
-[2024-07-28 20:19:54.389270] [0x00007453cd6006c0] [error] (checkStatus__) Status was not ok
-[2024-07-28 20:19:54.389382] [0x00007453dbe006c0] [error] (checkStatus__) Status was not ok
+[2024-07-28 22:07:52.698220] [0x0000757936e88c00] [warning] (decodeToDataMap_) Failed to parse the jsonString [{"key""value"}]
+[2024-07-28 22:07:52.698979] [0x0000757936e88c00] [error] (decodeToDataMap_) Found nesting at key (key_1)
+[2024-07-28 22:07:52.700428] [0x0000757936e88c00] [info] Hello world
+[2024-07-28 22:07:52.700535] [0x0000757936e88c00] [warning] Hello world, 5 + 5 = 10
+[2024-07-28 22:07:52.700578] [0x0000757936e88c00] [error] Hello world again!
+[2024-07-28 22:07:52.701033] [0x0000757936e88c00] [error] (getKeyValue_) key (key_1) was not found
+[2024-07-28 22:07:52.701253] [0x0000757936e88c00] [error] (decodeToDataMap_) Found nesting at key (key_1)
+[2024-07-28 22:07:52.704593] [0x0000757936e88c00] [error] (getInt_) Invalid type of value access
+[2024-07-28 22:07:53.133707] [0x0000757936e88c00] [error] (checkStatus__) Status was not ok
+[2024-07-28 22:07:53.137254] [0x00007578ceffd6c0] [error] (checkStatus__) Status was not ok
+[2024-07-28 22:07:53.138460] [0x00007578cb7f66c0] [error] (checkStatus__) Status was not ok
+[2024-07-28 22:07:53.139542] [0x00007578ce7fc6c0] [error] (checkStatus__) Status was not ok
+[2024-07-28 22:07:53.140604] [0x00007578f1ffb6c0] [error] (checkStatus__) Status was not ok
 (checkStatus__) Status was not ok
-[2024-07-28 20:19:54.389427] [0x00007453daa006c0] [error] (checkStatus__) Status was not ok
-[2024-07-28 20:19:54.389522] [0x00007453e4c006c0] [error] 
-[2024-07-28 20:19:54.389572] [0x00007453cea006c0] [error] (checkStatus__) Status was not ok
-[2024-07-28 20:19:54.389631] [0x00007453e60006c0] [error] (checkStatus__) Status was not ok
-[2024-07-28 20:19:54.389664] [0x00007453cf4006c0] [error] (checkStatus__) Status was not ok
-[2024-07-28 20:19:54.389787] [0x00007453db4006c0] [error] (checkStatus__) Status was not ok
-[2024-07-28 20:19:54.390084] [0x00007453e56006c0] [error] (checkStatus__) Status was not ok
-[2024-07-28 20:19:54.531834] [0x0000745406f2ac00] [error] (checkStatus__) rocksdb status was not ok, Error (IO error: No such file or directory: While mkdir if missing: /tmp/test_db/metadata: No such file or directory)
-[2024-07-28 20:19:54.615495] [0x0000745406f2ac00] [error] (checkStatus__) Status was not ok
+(checkStatus__) Status was not ok
+[2024-07-28 22:07:53.140845] [0x00007578cc7f86c0] [error] 
+[2024-07-28 22:07:53.140912] [0x00007578f0ff96c0] [error] 
+[2024-07-28 22:07:53.140983] [0x00007578cbff76c0] [error] (checkStatus__) Status was not ok
+[2024-07-28 22:07:53.141228] [0x00007578cffff6c0] [error] (checkStatus__) Status was not ok
+[2024-07-28 22:07:53.141586] [0x00007578ca7f46c0] [error] (checkStatus__) Status was not ok
+[2024-07-28 22:07:53.349413] [0x0000757936e88c00] [error] (checkStatus__) rocksdb status was not ok, Error (IO error: No such file or directory: While mkdir if missing: /tmp/test_db/metadata: No such file or directory)
+[2024-07-28 22:07:53.529996] [0x0000757936e88c00] [error] (checkStatus__) Status was not ok
