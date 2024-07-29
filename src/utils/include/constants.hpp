@@ -14,4 +14,5 @@ struct Constants {
   static constexpr String METADATA_DATABASE_NAME = "metadata";
   static constexpr String METADATA_FIELDS_DATASET_NAME = "fields";
   static constexpr String FIELDS_JSON_FORMAT_KEY_NAME = "names";
+  static constexpr int ALLOWED_NESTED_FILES = 2;
 };

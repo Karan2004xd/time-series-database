@@ -4,6 +4,7 @@
 #include <gtest/gtest.h>
 #include <thread>
 #include "../../../core/database/include/rocksdb_data_repository.hpp"
+#include "../../../core/database/include/horizontal_data_indexer.hpp"
 
 TEST(RocksDBDataRepositorySuite, AddDataTest) {
   RocksDBDataRepository repo;
@@ -11,6 +12,7 @@ TEST(RocksDBDataRepositorySuite, AddDataTest) {
   std::string filePath = "/tmp/test_db";
 
   repo.addData_("key", value, "test_db");
+  repo.closeDatabaseConnection_();
 
   rocksdb::DB *db {nullptr};
   rocksdb::Options options;
@@ -19,11 +21,11 @@ TEST(RocksDBDataRepositorySuite, AddDataTest) {
   assert(status.ok());
 
   std::string dbValue;
-  status = db->Get(rocksdb::ReadOptions(), "key", &dbValue);
-  delete db;
+  status = db->Get(rocksdb::ReadOptions(), "key_1", &dbValue);
 
   ASSERT_TRUE(status.ok());
   ASSERT_EQ(dbValue, value.getString_());
+  delete db;
 
   std::filesystem::remove_all(filePath);
 }
@@ -65,6 +67,7 @@ TEST(RocksDBDataRepositorySuite, DeleteDataTest) {
   delete db;
 
   repo.deleteData_("key", "test_db");
+  repo.closeDatabaseConnection_();
 
   status = rocksdb::DB::Open(options, filePath, &db2);
   assert(status.ok());
@@ -84,9 +87,9 @@ TEST(RocksDBDataRepositorySuite, InvalidDataAccessTest) {
 
   repo.addData_("key", {"value"}, "test_db");
 
-  ASSERT_EQ(repo.getData_("key", "test_db").getString_(), "value");
+  ASSERT_EQ(repo.getData_("key_1", "test_db").getString_(), "value");
   EXPECT_ANY_THROW({
-    repo.getData_("key_1", "test_db");
+    repo.getData_("key_2", "test_db");
   });
 
   std::filesystem::remove_all(filePath);
@@ -118,6 +121,140 @@ TEST(RocksDBDataRepositorySuite, ConcurrentOperationTest) {
   std::filesystem::remove_all(filePath);
 }
 
-/* TEST(RocksDBDataRepositorySuite, DataIndexingTest) { */
-/*   RocksDBDataRepository repo; */
-/* } */
+TEST(RocksDBDataRepositorySuite, IsActiveTest) {
+  RocksDBDataRepository repo;
+  std::string filePath = "/tmp/test_db";
+  repo.addData_("key", {"value"}, "test_db");
+
+  ASSERT_TRUE(repo.isActive_());
+
+  std::filesystem::remove_all(filePath);
+}
+
+TEST(RocksDBDataRepositorySuite, CloseDatabaseConnectionTest) {
+  RocksDBDataRepository repo;
+  std::string filePath = "/tmp/test_db";
+  repo.addData_("key", {"value"}, "test_db");
+  repo.closeDatabaseConnection_();
+
+  ASSERT_TRUE(repo.isActive_());
+
+  std::filesystem::remove_all(filePath);
+}
+
+TEST(RocksDBDataRepositorySuite, GetDatabaseNameTest) {
+  RocksDBDataRepository repo;
+  std::string filePath = "/tmp/test_db";
+  repo.addData_("key", {"value"}, "test_db");
+
+  ASSERT_EQ(filePath, repo.getDatabaseName_());
+  std::filesystem::remove_all(filePath);
+}
+
+TEST(RocksDBDataRepositorySuite, NotifyObserverTest) {
+  RocksDBDataRepository repo;
+  HorizontalDataIndexer indexer;
+
+  repo.subscribe_(&indexer);
+  QueryParserValue value;
+
+  ASSERT_NO_THROW({
+    repo.addData_("key", {"value"}, "test_db");
+    value = repo.getData_("1", "test_db/key");
+  });
+
+  ASSERT_EQ(value.getString_(), "value");
+  std::filesystem::remove_all("/tmp/test_db");
+}
+
+TEST(RocksDBDataRepositorySuite, AddingMultipleSimpleDataTest) {
+  RocksDBDataRepository repo;
+  HorizontalDataIndexer indexer;
+
+  repo.subscribe_(&indexer);
+
+  ASSERT_NO_THROW({
+    for (int i = 1; i < 10; i++) {
+      std::string stringValue = "value_" + std::to_string(i);
+      repo.addData_("values_key", {stringValue}, "test_db");
+    }
+  });
+
+  std::filesystem::remove_all("/tmp/test_db");
+}
+
+TEST(RocksDBDataRepositorySuite, GettingMultipleSimpleDataTest) {
+  RocksDBDataRepository repo;
+  HorizontalDataIndexer indexer;
+
+  repo.subscribe_(&indexer);
+  std::vector<QueryParserValue> values;
+
+  for (int i = 1; i < 10; i++) {
+    std::string stringValue = "value_" + std::to_string(i);
+    repo.addData_("values_key", {stringValue}, "test_db");
+    values.push_back({stringValue});
+  }
+
+  for (int i = 1; i < 10; i++) {
+    auto value = repo.getData_(std::to_string(i), "test_db/values_key");
+    ASSERT_EQ(value.getString_(), values[i - 1].getString_());
+  }
+
+  std::filesystem::remove_all("/tmp/test_db");
+}
+
+TEST(RocksDBDataRepositorySuite, MultipleConcurrentDataTest) {
+  RocksDBDataRepository repo;
+  HorizontalDataIndexer indexer;
+
+  repo.subscribe_(&indexer);
+  std::vector<QueryParserValue> values;
+
+  auto addDataOperation = [&repo, &values]() {
+    for (int i = 1; i < 10; i++) {
+      std::string stringValue = "value_" + std::to_string(i);
+      repo.addData_("values_key", {stringValue}, "test_db");
+      values.push_back({stringValue});
+    }
+  };
+
+  auto getDataOperation = [&repo, &values]() {
+    for (int i = 1; i < 10; i++) {
+      auto value = repo.getData_(std::to_string(i), "test_db/values_key");
+      std::string resultValue = value.getString_();
+      ASSERT_EQ(resultValue, values[i - 1].getString_());
+    }
+  };
+
+  std::future<void> threadOne = std::async(std::launch::async, addDataOperation);
+  std::future<void> threadTwo = std::async(std::launch::async, getDataOperation);
+
+  threadOne.wait();
+  threadTwo.wait();
+
+  std::filesystem::remove_all("/tmp/test_db");
+}
+
+TEST(RocksDBDataRepositorySuite, MultipleDataTypesTest) {
+  RocksDBDataRepository repo;
+  HorizontalDataIndexer indexer;
+
+  repo.subscribe_(&indexer);
+
+  repo.addData_("key_1", {"value_1"}, "test_db");
+  repo.addData_("key_1", {1023}, "test_db");
+  repo.addData_("key_1", {static_cast<long double>(10.101)}, "test_db");
+
+  auto valueOne = repo.getData_("1", "test_db/key_1");
+  auto valueTwo = repo.getData_("2", "test_db/key_1");
+  auto valueThree = repo.getData_("3", "test_db/key_1");
+
+  std::cout << valueThree.isInt_() << std::endl;
+
+  ASSERT_EQ(valueOne.getString_(), "value_1");
+  ASSERT_EQ(valueTwo.getInt_(), 1023);
+  ASSERT_EQ(valueThree.getDouble_(), 10.101);
+
+  std::filesystem::remove_all("/tmp/test_db");
+}

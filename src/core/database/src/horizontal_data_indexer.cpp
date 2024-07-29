@@ -1,67 +1,43 @@
 #include "../include/horizontal_data_indexer.hpp"
-#include "../../../utils/include/logs/logger.hpp"
-#include <filesystem>
 
-void HorizontalDataIndexer::setDatabaseName__(const std::string &mainDatabaseName) {
-  databaseName__ = std::string(Constants::DEFAULT_DATABASE_DIRECTORY)
-                  + mainDatabaseName + "/"
-                  + std::string(Constants::METADATA_DATABASE_NAME);
+std::pair<std::string, std::string> HorizontalDataIndexer::getKeyAndValueFromArg__(const std::string &arg) {
+  size_t semiColonPos = arg.rfind("_");
+
+  if (semiColonPos == std::string::npos) throw std::runtime_error("Error");
+  std::string key, value;
+  value = arg.substr(0, semiColonPos);
+  key = arg.substr(semiColonPos + 1, arg.length());
+
+  return {key, value}; // {"id" : "value"}
 }
 
-/* void HorizontalDataIndexer::checkStatus__(const rocksdb::Status &status) { */
-/*   if (status.ok()) return ; */
-/*   Logger::log_(Logger::ERROR) << "(checkStatus__) rocksdb status was not ok, Error (" << status.ToString() << ")\n"; */
-/*   throw std::runtime_error(status.ToString()); */
-/* } */
+bool HorizontalDataIndexer::checkIfValidPath__(const std::string &path) const {
+  std::string mainDatabaseName = std::string(Constants::DEFAULT_DATABASE_DIRECTORY);
 
-/* void HorizontalDataIndexer::setDatabase__(const std::string &databaseName) { */
-/*   setDatabaseName__(databaseName); */
+  if (path.find(mainDatabaseName) == std::string::npos) return false;
 
-/*   rocksdb::Options options; */
-/*   options.OptimizeLevelStyleCompaction(); */
-/*   options.IncreaseParallelism(); */
+  std::string remainingPath = path.substr(mainDatabaseName.length());
+  if (remainingPath.empty() || remainingPath == "/") return true;
 
-/*   rocksdb::Status status = rocksdb::DB::Open(options, databaseName__, &database__); */
-/*   checkStatus__(status); */
-/* } */
+  int count = std::count(remainingPath.begin(), remainingPath.end(), '/');
+  if (remainingPath.back() == '/') {
+    count--;
+  }
 
-/* std::vector<QueryParserValue> HorizontalDataIndexer::getKeyValueFromWholeData__(const std::string &key) { */
-/*   std::vector<QueryParserValue> values; */
-/*   SimpleQueryParser parser; */
-
-/*   rocksdb::Iterator *it = database__->NewIterator(rocksdb::ReadOptions()); */
-/*   for (it->SeekToFirst(); it->Valid(); it->Next()) { */
-/*     std::string value = it->value().ToString(); */
-/*     parser.parse_(value); */
-/*     if (parser.containesKey(key)) { */
-/*       values.push_back(parser.getKeyValue_(key)); */
-/*     } */
-/*   } */
-/*   return values; */
-/* } */
+  return count < Constants::ALLOWED_NESTED_FILES;
+}
 
 void HorizontalDataIndexer::dataChanged_(DataRepository &source, const std::string &args) {
-  /* setDatabase__(args); */
-  /* auto fields = source.getData_(std::string(Constants::METADATA_FIELDS_DATASET_NAME), databaseName__); */
-  
-  /* if (fields.isString_()) { */
-  /*   std::string fieldsData = fields.getString_(); */
-  /*   parser__.parse_(fieldsData); */
+  std::string tempArgs = args;
 
-  /*   auto listOfNames = parser__.getKeyValue_(std::string(Constants::FIELDS_JSON_FORMAT_KEY_NAME)); */
-  /*   if (listOfNames.isArray_()) { */
-  /*     for (const auto &name : listOfNames.getArray_()) { */
-  /*       std::string nameString = name.getString_(); */
-  /*       std::string filePathToCheck = databaseName__ + "/" + nameString; */
+  auto argsData = getKeyAndValueFromArg__(tempArgs);
+  std::string value {argsData.second}, id {argsData.first};
 
-  /*       if (!std::filesystem::exists(filePathToCheck) || !std::filesystem::is_directory(filePathToCheck)) { */
-  /*         auto dataToAdd = getKeyValueFromWholeData__(nameString); */
+  std::string dbToStore = source.getDatabaseName_() + "/" + value;
+  if (!checkIfValidPath__(dbToStore)) return ;
 
-  /*         for (const auto &data : dataToAdd) { */
-  /*           source.addData_(nameString, data, filePathToCheck); */
-  /*         } */
-  /*       } */
-  /*     } */
-  /*   } */
-  /* } */
+  auto valueToStore = source.getData_(tempArgs, source.getDatabaseName_());
+
+  source.addData_(id, valueToStore, dbToStore);
+  source.deleteData_(tempArgs, source.getDatabaseName_());
 }

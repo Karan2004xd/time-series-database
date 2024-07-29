@@ -2,6 +2,20 @@
 #include "../../../utils/include/constants.hpp"
 #include "../../../utils/include/logs/logger.hpp"
 #include "../../../utils/include/json/simple_json_parser.hpp"
+#include <iostream>
+#include <sstream>
+#include <string>
+
+bool RocksDBDataRepository::isActive_() {
+  return database__ != nullptr;
+}
+
+bool RocksDBDataRepository::isFieldIndexed__(const std::string &fieldName) const {
+  for (const auto &pair : fields__) {
+    if (pair.first == fieldName) return true;
+  }
+  return false;
+}
 
 void RocksDBDataRepository::setDatabaseName__(const std::string &name) {
   databaseName__ = name;
@@ -11,9 +25,10 @@ void RocksDBDataRepository::setCurrentFilePath__(const std::string &path) {
   currentFilePath__ = path;
 }
 
-void RocksDBDataRepository::closeDatabaseConnection__() {
-  database__->Close();
-  delete database__;
+void RocksDBDataRepository::closeDatabaseConnection_() {
+  if (isActive_()) {
+    database__->Close();
+  }
 }
 
 void RocksDBDataRepository::checkStatus__(const rocksdb::Status &status) {
@@ -69,29 +84,32 @@ bool RocksDBDataRepository::isDouble__(const std::string &value) {
   }
 }
 
-void RocksDBDataRepository::setupDatabase__(const std::string &db) {
+void RocksDBDataRepository::setupDatabase__(const std::string &db,
+                                            bool createDb) {
   std::string filePath = db;
 
-  if (filePath.find(std::string(Constants::DEFAULT_DATABASE_DIRECTORY)) == std::string::npos) {
-    filePath = std::string(Constants::DEFAULT_DATABASE_DIRECTORY) + db;
+  rocksdb::Options options;
+  options.IncreaseParallelism();
+  options.OptimizeLevelStyleCompaction();
+
+  if (createDb) {
+    options.create_if_missing = true;
   }
 
-  if (currentFilePath__ != filePath) {
-    closeDatabaseConnection__();
+  if (filePath.find(std::string(Constants::DEFAULT_DATABASE_DIRECTORY)) == std::string::npos) {
+    filePath = std::string(Constants::DEFAULT_DATABASE_DIRECTORY) + filePath;
+  }
 
-    rocksdb::Options options;
-
-    options.create_if_missing = true;
-    options.IncreaseParallelism();
-    options.OptimizeLevelStyleCompaction();
-
+  if (filePath != currentFilePath__) {
+    closeDatabaseConnection_();
     rocksdb::Status status = rocksdb::DB::Open(options, filePath, &database__);
+
     checkStatus__(status);
-    setDatabaseName__(db);
+    setDatabaseName__(filePath);
   }
 }
 
-RocksDBDataRepository::AllDataMap RocksDBDataRepository::getAllDataMap(const std::string &db) {
+RocksDBDataRepository::AllDataMap RocksDBDataRepository::getAllDataMap_(const std::string &db) {
   AllDataMap result;
 
   rocksdb::Iterator *it = database__->NewIterator(rocksdb::ReadOptions());
@@ -102,7 +120,6 @@ RocksDBDataRepository::AllDataMap RocksDBDataRepository::getAllDataMap(const std
     result.push_back({key, value});
   }
 
-  delete it;
   return result;
 }
 
@@ -116,11 +133,18 @@ std::string RocksDBDataRepository::addDataHelper__(const QueryParserValue &value
 
   } else if (value.isInt_()) {
     long int valueToStore = value.getInt_();
-    valueString = std::string(reinterpret_cast<const char *>(&valueToStore), sizeof(valueToStore));
+    valueString = std::to_string(valueToStore);
 
   } else if (value.isDouble_()) {
     long double valueToStore = value.getDouble_();
-    valueString = std::string(reinterpret_cast<const char *>(&valueToStore), sizeof(valueToStore));
+
+    std::ostringstream oss;
+
+    oss.precision(10);
+    oss << valueToStore;
+
+    valueString = oss.str();
+    std::cout << valueString << std::endl;
 
   } else if (value.isArray_()) {
     JsonDataBuilder::JsonGenericParamsVector valuesToStore;
@@ -140,27 +164,61 @@ std::string RocksDBDataRepository::addDataHelper__(const QueryParserValue &value
   return valueString;
 }
 
+std::string RocksDBDataRepository::getAndChangeFiledIndex__(const std::string &key) {
+  size_t resultValue;
+  for (auto &pair : fields__) {
+    if (pair.first == key) {
+      pair.second++;
+      resultValue = pair.second;
+      break;
+    }
+  }
+  return std::to_string(resultValue);
+}
+
 void RocksDBDataRepository::addData_(const std::string &key,
                                      const QueryParserValue &value,
                                      const std::string &db) {
+  std::string keyToStore = key;
+  std::string dataToStore;
   setupDatabase__(db);
-  rocksdb::Status status = database__->Put(rocksdb::WriteOptions(), key, addDataHelper__(value, key));
 
+  bool flag = isInteger__(key);
+
+  if (!flag) {
+
+    keyToStore += "_";
+
+    if (isFieldIndexed__(key)) {
+      keyToStore += getAndChangeFiledIndex__(key);
+    } else {
+      fields__.push_back({key, 1});
+      keyToStore += "1";
+    }
+  } 
+
+  dataToStore = addDataHelper__(value, key);
+
+  rocksdb::Status status = database__->Put(rocksdb::WriteOptions(), keyToStore, dataToStore);
   checkStatus__(status);
-  /* notify_(*this, databaseName__); */
+
+  if (!flag) {
+    notify_(*this, keyToStore);
+  }
 }
 
 QueryParserValue RocksDBDataRepository::getData_(const std::string &key, const std::string &db) {
-  setupDatabase__(db);
+  setupDatabase__(db, false);
 
   std::string retrivedValue;
   rocksdb::Status status = database__->Get(rocksdb::ReadOptions(), key, &retrivedValue);
 
   QueryParserValue resultValue;
-  if (isDouble__(retrivedValue)) {
-    resultValue.setValue_(deserializeStringToDouble__(retrivedValue));
-  } else if (isInteger__(retrivedValue)) {
+
+  if (isInteger__(retrivedValue)) {
     resultValue.setValue_(deserializeStringToInt__(retrivedValue));
+  } else if (isDouble__(retrivedValue)) {
+    resultValue.setValue_(deserializeStringToDouble__(retrivedValue));
   } else {
     resultValue.setValue_(retrivedValue);
   }
@@ -171,12 +229,10 @@ QueryParserValue RocksDBDataRepository::getData_(const std::string &key, const s
 
 void RocksDBDataRepository::deleteData_(const std::string &key, const std::string &db) {
   setupDatabase__(db);
-
   rocksdb::Status status = database__->Delete(rocksdb::WriteOptions(), key);
-
   checkStatus__(status);
 }
 
 RocksDBDataRepository::~RocksDBDataRepository() {
-  closeDatabaseConnection__();
+  closeDatabaseConnection_();
 }
