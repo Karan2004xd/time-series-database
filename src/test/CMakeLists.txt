@@ -12,7 +12,7 @@ set(TEST_SOURCES
   "./utils/query/query_parser_value_test.cpp"
   "./core/database/rocksdb_data_repository_test.cpp"
   "./core/observer/observer_test.cpp"
-  "./core/database/horizontal_data_indexer.cpp"
+  "./core/database/horizontal_data_indexer_test.cpp"
 )
 
 add_executable(run_tests ${TEST_SOURCES})

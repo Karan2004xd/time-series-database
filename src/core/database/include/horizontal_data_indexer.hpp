@@ -9,7 +9,6 @@
 class HorizontalDataIndexer : public Observer<DataRepository> {
 private:
   SimpleQueryParser parser__;
-  rocksdb::DB *database__ {nullptr};
 
   std::string databaseName__;
   void setDatabaseName__(const std::string &mainDatabaseName);
@@ -17,7 +16,7 @@ private:
   void setDatabase__(const std::string &databaseName);
   void checkStatus__(const rocksdb::Status &status);
 
-  std::vector<QueryParserValue> getKeyValueFromWholeData__(const std::string &key);
+  /* std::vector<QueryParserValue> getKeyValueFromWholeData__(const std::string &key) */
 
 public:
   // expecting database name in args (only name no path)

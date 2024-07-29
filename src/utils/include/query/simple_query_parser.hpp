@@ -6,6 +6,8 @@
 // Does not support nested queries 
 class SimpleQueryParser : public QueryParser, protected SimpleJsonParser {
 private:
+  std::string currentJsonString__;
+
   std::unordered_map<std::string, QueryParserValue> queryData__;
   std::vector<std::string> queryKeys__;
   std::vector<QueryParserValue> queryValues__;

@@ -10,7 +10,7 @@ void SimpleQueryParser::setQueryMetadata() {
 }
 
 void SimpleQueryParser::parse_(std::string &jsonString) {
-  if (!queryData__.empty()) return ;
+  if (currentJsonString__ == jsonString) return;
 
   auto rawDataMap = decodeToDataMap_(jsonString);
 
@@ -18,7 +18,7 @@ void SimpleQueryParser::parse_(std::string &jsonString) {
     QueryParserValue newValue {data.second};
     queryData__[data.first] = newValue;
   }
-
+  currentJsonString__ = jsonString;
   setQueryMetadata();
 }
 
