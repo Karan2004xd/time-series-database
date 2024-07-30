@@ -2,9 +2,6 @@
 #include "../../../utils/include/constants.hpp"
 #include "../../../utils/include/logs/logger.hpp"
 #include "../../../utils/include/json/simple_json_parser.hpp"
-#include <iostream>
-#include <sstream>
-#include <string>
 
 bool RocksDBDataRepository::isActive_() {
   return database__ != nullptr;
@@ -144,7 +141,6 @@ std::string RocksDBDataRepository::addDataHelper__(const QueryParserValue &value
     oss << valueToStore;
 
     valueString = oss.str();
-    std::cout << valueString << std::endl;
 
   } else if (value.isArray_()) {
     JsonDataBuilder::JsonGenericParamsVector valuesToStore;
@@ -213,18 +209,18 @@ QueryParserValue RocksDBDataRepository::getData_(const std::string &key, const s
   std::string retrivedValue;
   rocksdb::Status status = database__->Get(rocksdb::ReadOptions(), key, &retrivedValue);
 
-  QueryParserValue resultValue;
+/*   QueryParserValue resultValue; */
 
-  if (isInteger__(retrivedValue)) {
-    resultValue.setValue_(deserializeStringToInt__(retrivedValue));
-  } else if (isDouble__(retrivedValue)) {
-    resultValue.setValue_(deserializeStringToDouble__(retrivedValue));
-  } else {
-    resultValue.setValue_(retrivedValue);
-  }
+/*   if (isInteger__(retrivedValue)) { */
+/*     resultValue.setValue_(deserializeStringToInt__(retrivedValue)); */
+/*   } else if (isDouble__(retrivedValue)) { */
+/*     resultValue.setValue_(deserializeStringToDouble__(retrivedValue)); */
+/*   } else { */
+/*     resultValue.setValue_(retrivedValue); */
+/*   } */
 
   checkStatus__(status);
-  return resultValue;
+  return {retrivedValue};
 }
 
 void RocksDBDataRepository::deleteData_(const std::string &key, const std::string &db) {

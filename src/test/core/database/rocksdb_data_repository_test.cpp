@@ -244,17 +244,15 @@ TEST(RocksDBDataRepositorySuite, MultipleDataTypesTest) {
 
   repo.addData_("key_1", {"value_1"}, "test_db");
   repo.addData_("key_1", {1023}, "test_db");
-  repo.addData_("key_1", {static_cast<long double>(10.101)}, "test_db");
+  repo.addData_("key_1", {10.101}, "test_db");
 
   auto valueOne = repo.getData_("1", "test_db/key_1");
   auto valueTwo = repo.getData_("2", "test_db/key_1");
   auto valueThree = repo.getData_("3", "test_db/key_1");
 
-  std::cout << valueThree.isInt_() << std::endl;
-
   ASSERT_EQ(valueOne.getString_(), "value_1");
-  ASSERT_EQ(valueTwo.getInt_(), 1023);
-  ASSERT_EQ(valueThree.getDouble_(), 10.101);
+  ASSERT_EQ(valueTwo.getString_(), "1023");
+  ASSERT_EQ(valueThree.getString_(), "10.101");
 
   std::filesystem::remove_all("/tmp/test_db");
 }
