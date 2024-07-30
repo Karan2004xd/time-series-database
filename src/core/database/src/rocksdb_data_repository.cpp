@@ -102,22 +102,11 @@ void RocksDBDataRepository::setupDatabase__(const std::string &db,
     rocksdb::Status status = rocksdb::DB::Open(options, filePath, &database__);
 
     checkStatus__(status);
+    setCurrentFilePath__(filePath);
+  }
+  if (db.find('/') == std::string::npos) {
     setDatabaseName__(filePath);
   }
-}
-
-RocksDBDataRepository::AllDataMap RocksDBDataRepository::getAllDataMap_(const std::string &db) {
-  AllDataMap result;
-
-  rocksdb::Iterator *it = database__->NewIterator(rocksdb::ReadOptions());
-
-  for (it->SeekToFirst(); it->Valid(); it->Next()) {
-    std::string key = it->key().ToString();
-    std::string value = it->value().ToString();
-    result.push_back({key, value});
-  }
-
-  return result;
 }
 
 std::string RocksDBDataRepository::addDataHelper__(const QueryParserValue &value,
@@ -147,11 +136,11 @@ std::string RocksDBDataRepository::addDataHelper__(const QueryParserValue &value
 
     for (const auto &val : value.getArray_()) {
       if (val.isString_()) {
-        valuesToStore.push_back(value.getString_());
+        valuesToStore.push_back(val.getString_());
       } else if (val.isInt_()) {
-        valuesToStore.push_back(value.getInt_());
+        valuesToStore.push_back(val.getInt_());
       } else if (val.isDouble_()) {
-        valuesToStore.push_back(value.getDouble_());
+        valuesToStore.push_back(val.getDouble_());
       }
     }
 
@@ -193,7 +182,7 @@ void RocksDBDataRepository::addData_(const std::string &key,
     }
   } 
 
-  dataToStore = addDataHelper__(value, key);
+  dataToStore = addDataHelper__(value, keyToStore);
 
   rocksdb::Status status = database__->Put(rocksdb::WriteOptions(), keyToStore, dataToStore);
   checkStatus__(status);
@@ -209,22 +198,13 @@ QueryParserValue RocksDBDataRepository::getData_(const std::string &key, const s
   std::string retrivedValue;
   rocksdb::Status status = database__->Get(rocksdb::ReadOptions(), key, &retrivedValue);
 
-/*   QueryParserValue resultValue; */
-
-/*   if (isInteger__(retrivedValue)) { */
-/*     resultValue.setValue_(deserializeStringToInt__(retrivedValue)); */
-/*   } else if (isDouble__(retrivedValue)) { */
-/*     resultValue.setValue_(deserializeStringToDouble__(retrivedValue)); */
-/*   } else { */
-/*     resultValue.setValue_(retrivedValue); */
-/*   } */
-
   checkStatus__(status);
+  /* std::cout << retrivedValue << std::endl; */
   return {retrivedValue};
 }
 
 void RocksDBDataRepository::deleteData_(const std::string &key, const std::string &db) {
-  setupDatabase__(db);
+  setupDatabase__(db, false);
   rocksdb::Status status = database__->Delete(rocksdb::WriteOptions(), key);
   checkStatus__(status);
 }

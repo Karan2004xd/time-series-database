@@ -35,7 +35,6 @@ public:
   void deleteData_(const std::string &key, const std::string &db) override;
 
   const std::string getDatabaseName_() const override { return databaseName__; }
-  AllDataMap getAllDataMap_(const std::string &db) override;
 
   bool isActive_() override;
   void closeDatabaseConnection_();

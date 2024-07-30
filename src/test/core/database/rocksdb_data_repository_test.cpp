@@ -256,3 +256,24 @@ TEST(RocksDBDataRepositorySuite, MultipleDataTypesTest) {
 
   std::filesystem::remove_all("/tmp/test_db");
 }
+
+TEST(RocksDBDataRepositorySuite, ListOfSimilarDataTypesTest) {
+  RocksDBDataRepository repo;
+  HorizontalDataIndexer indexer;
+
+  repo.subscribe_(&indexer);
+
+  JsonDataBuilder::JsonGenericParamsVector vec {
+    "hello", "world", 10.102, 1002
+  };
+
+  std::string testString = "{\"vec_key_1\":[\"hello\",\"world\",10,1002]}";
+  repo.addData_("vec_key", {vec}, "test_db");
+
+  ASSERT_NO_THROW({
+    auto value = repo.getData_("1", "test_db/vec_key");
+    ASSERT_EQ(value.getString_(), testString);
+  });
+
+  std::filesystem::remove_all("/tmp/test_db");
+}

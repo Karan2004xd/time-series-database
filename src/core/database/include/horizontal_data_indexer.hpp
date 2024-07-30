@@ -11,8 +11,6 @@ private:
   bool checkIfValidPath__(const std::string &path) const;
 
 public:
-  // expecting database name in args (only name no path)
-  // expecting the data of metadata to be in format
-  // fields : {"name" : "name of the new field"}
+  // expecting only the key to be passed from the user
   void dataChanged_(DataRepository &source, const std::string &args) override;
 };
