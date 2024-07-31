@@ -1,22 +1,24 @@
-[2024-07-30 22:50:49.232008] [0x00007cb98cd1ac00] [warning] (decodeToDataMap_) Failed to parse the jsonString [{"key""value"}]
-[2024-07-30 22:50:49.232138] [0x00007cb98cd1ac00] [error] (decodeToDataMap_) Found nesting at key (key_1)
-[2024-07-30 22:50:49.232237] [0x00007cb98cd1ac00] [info] Hello world
-[2024-07-30 22:50:49.232248] [0x00007cb98cd1ac00] [warning] Hello world, 5 + 5 = 10
-[2024-07-30 22:50:49.232253] [0x00007cb98cd1ac00] [error] Hello world again!
-[2024-07-30 22:50:49.232315] [0x00007cb98cd1ac00] [error] (getKeyValue_) key (key_1) was not found
-[2024-07-30 22:50:49.232344] [0x00007cb98cd1ac00] [error] (decodeToDataMap_) Found nesting at key (key_1)
-[2024-07-30 22:50:49.232741] [0x00007cb98cd1ac00] [error] (getInt_) Invalid type of value access
-[2024-07-30 22:50:49.379705] [0x00007cb98cd1ac00] [error] (checkStatus__) Status was not ok
-[2024-07-30 22:50:49.389871] [0x00007cb96a0006c0] [error] (checkStatus__) Status was not ok
-[2024-07-30 22:50:49.390036] [0x00007cb947e006c0] [error] (checkStatus__) Status was not ok
-[2024-07-30 22:50:49.390253] [0x00007cb95fe006c0] [error] (checkStatus__) Status was not ok
-[2024-07-30 22:50:49.390352] [0x00007cb968c006c0] [error] (checkStatus__) Status was not ok
-[2024-07-30 22:50:49.390567] [0x00007cb95cc006c0] [error] (checkStatus__) Status was not ok
-[2024-07-30 22:50:49.390879] [0x00007cb95f4006c0] [error] (checkStatus__) Status was not ok
-[2024-07-30 22:50:49.390970] [0x00007cb95e0006c0] [error] (checkStatus__) Status was not ok
-[2024-07-30 22:50:49.391173] [0x00007cb95ea006c0] [error] (checkStatus__) Status was not ok
-[2024-07-30 22:50:49.391229] [0x00007cb9696006c0] [error] (checkStatus__) Status was not ok
-[2024-07-30 22:50:49.516460] [0x00007cb96aa006c0] [error] (checkStatus__) Status was not ok
-[2024-07-30 22:50:51.077979] [0x00007cb947e006c0] [error] (checkStatus__) Status was not ok
-[2024-07-30 22:50:52.450339] [0x00007cb98cd1ac00] [error] (checkStatus__) Status was not ok
-[2024-07-30 22:50:52.594201] [0x00007cb98cd1ac00] [error] (checkStatus__) Status was not ok
+[2024-07-31 09:04:09.124150] [0x00007a567ed37c00] [warning] (decodeToDataMap_) Failed to parse the jsonString [{"key""value"}]
+[2024-07-31 09:04:09.124429] [0x00007a567ed37c00] [error] (decodeToDataMap_) Found nesting at key (key_1)
+[2024-07-31 09:04:09.124653] [0x00007a567ed37c00] [info] Hello world
+[2024-07-31 09:04:09.124688] [0x00007a567ed37c00] [warning] Hello world, 5 + 5 = 10
+[2024-07-31 09:04:09.124705] [0x00007a567ed37c00] [error] Hello world again!
+[2024-07-31 09:04:09.124925] [0x00007a567ed37c00] [error] (getKeyValue_) key (key_1) was not found
+[2024-07-31 09:04:09.125045] [0x00007a567ed37c00] [error] (decodeToDataMap_) Found nesting at key (key_1)
+[2024-07-31 09:04:09.126402] [0x00007a567ed37c00] [error] (getInt_) Invalid type of value access
+[2024-07-31 09:04:09.480879] [0x00007a567ed37c00] [error] (checkStatus__) Status was not ok
+[2024-07-31 09:04:09.510566] [0x00007a5621ffb6c0] [error] (checkStatus__) Status was not ok
+(checkStatus__) Status was not ok
+(checkStatus__) Status was not ok
+[2024-07-31 09:04:09.510684] [0x00007a5615ffb6c0] [error] (checkStatus__) Status was not ok
+[2024-07-31 09:04:09.510987] [0x00007a5623fff6c0] [error] 
+[2024-07-31 09:04:09.511086] [0x00007a56397fa6c0] [error] 
+[2024-07-31 09:04:09.511568] [0x00007a563a7fc6c0] [error] 
+[2024-07-31 09:04:09.512245] [0x00007a56217fa6c0] [error] (checkStatus__) Status was not ok
+[2024-07-31 09:04:09.512405] [0x00007a5638ff96c0] [error] (checkStatus__) Status was not ok
+[2024-07-31 09:04:09.512915] [0x00007a5617fff6c0] [error] (checkStatus__) Status was not ok
+[2024-07-31 09:04:09.513254] [0x00007a5620ff96c0] [error] (checkStatus__) Status was not ok
+[2024-07-31 09:04:09.668813] [0x00007a5639ffb6c0] [error] (checkStatus__) Status was not ok
+[2024-07-31 09:04:13.535118] [0x00007a56167fc6c0] [error] (checkStatus__) Status was not ok
+[2024-07-31 09:04:16.753863] [0x00007a567ed37c00] [error] (checkStatus__) Status was not ok
+[2024-07-31 09:04:17.085458] [0x00007a567ed37c00] [error] (checkStatus__) Status was not ok
