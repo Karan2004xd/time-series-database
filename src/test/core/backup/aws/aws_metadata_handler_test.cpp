@@ -1,18 +1,29 @@
-#include <aws/core/client/ClientConfiguration.h>
 #include <gtest/gtest.h>
-#include <aws/s3/S3Client.h>
-#include <aws/core/Aws.h>
 
 #include "../../../../core/backup/include/aws/aws_metadata_handler.hpp"
+#include "../../../../core/database/include/rocksdb_data_repository.hpp"
+#include "../../../../utils/include/constants.hpp"
 
-Aws::SDKOptions options;
-Aws::Client::ClientConfiguration config;
+RocksDBDataRepository repo;
 
 TEST(AWSMetadataHandlerSuite, GetDefaultRegionTest) {
-  Aws::InitAPI(options);
+  AWSMetadataHandler metadataHandler {repo};
+  ASSERT_EQ(std::string(Constants::DEFAULT_S3_BUCKET_REGION), metadataHandler.getDefaultRegion_());
+}
 
-  AWSMetadataHandler metadataHandler;
-  ASSERT_EQ(config.region, metadataHandler.getDefaultRegion__());
+TEST(AWSMetadataHandlerSuite, GetBucketNamesByRegionTest) {
+  AWSMetadataHandler metadataHandler {repo};
+  std::string region = "ap-northeast-1";
+  auto vec = metadataHandler.getBucketNamesByRegion_(region);
 
-  Aws::ShutdownAPI(options);
+  ASSERT_TRUE(std::find(vec.begin(), vec.end(), region) != vec.end());
+  ASSERT_FALSE(std::find(vec.begin(), vec.end(), "dummy_data") != vec.end());
+}
+
+TEST(AWSMetadataHandlerSuite, GetBucketRegionByNameTest) {
+  AWSMetadataHandler metadataHandler {repo};
+  std::string bucketName = std::string(Constants::S3_TEST_BUCKET);
+  std::string testRegion = "eu-north-1";
+
+  ASSERT_EQ(testRegion, metadataHandler.getBucketRegionByName_(bucketName));
 }

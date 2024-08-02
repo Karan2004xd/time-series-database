@@ -17,4 +17,4 @@ set(TEST_SOURCES
 )
 
 add_executable(run_tests ${TEST_SOURCES})
-target_link_libraries(run_tests ${GTEST_LIBRARIES} GTest::GTest GTest::Main pthread database)
+target_link_libraries(run_tests ${GTEST_LIBRARIES} GTest::GTest GTest::Main pthread database backup)

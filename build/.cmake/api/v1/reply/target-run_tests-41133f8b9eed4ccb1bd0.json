@@ -186,6 +186,10 @@
 		{
 			"backtrace" : 2,
 			"id" : "database::@357c0a515c3de3bd73e9"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "backup::@56b06ba0e137295ebb8e"
 		}
 	],
 	"id" : "run_tests::@b7fcbc08bf8df37e9c1b",
@@ -208,6 +212,11 @@
 				"role" : "libraries"
 			},
 			{
+				"backtrace" : 2,
+				"fragment" : "../core/backup/libbackup.a",
+				"role" : "libraries"
+			},
+			{
 				"backtrace" : 6,
 				"fragment" : "/usr/lib/libgtest_main.so.1.14.0",
 				"role" : "libraries"
@@ -215,6 +224,11 @@
 			{
 				"backtrace" : 2,
 				"fragment" : "/usr/lib/libgtest.so.1.14.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "../core/database/libdatabase.a",
 				"role" : "libraries"
 			},
 			{

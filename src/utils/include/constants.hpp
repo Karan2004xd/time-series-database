@@ -15,4 +15,8 @@ struct Constants {
   static constexpr String METADATA_FIELDS_DATASET_NAME = "fields";
   static constexpr String FIELDS_JSON_FORMAT_KEY_NAME = "names";
   static constexpr int ALLOWED_NESTED_FILES = 2;
+
+  // backup constansts
+  static constexpr String DEFAULT_S3_BUCKET_REGION = "eu-north-1";
+  static constexpr String S3_TEST_BUCKET = "eu-north-1-test-bucket";
 };
