@@ -27,3 +27,22 @@ TEST(AWSMetadataHandlerSuite, GetBucketRegionByNameTest) {
 
   ASSERT_EQ(testRegion, metadataHandler.getBucketRegionByName_(bucketName));
 }
+
+TEST(AWSMetadataHandlerSuite, GetS3ConfigTest) {
+  AWSMetadataHandler metadataHandler {repo};
+  std::string bucketName = std::string(Constants::S3_TEST_BUCKET);
+  std::string testRegion = metadataHandler.getBucketRegionByName_(bucketName);
+
+  ASSERT_NO_THROW({
+    ASSERT_EQ(testRegion, metadataHandler.getS3Config(bucketName).region);
+  });
+}
+
+TEST(AWSMetadataHandlerSuite, GetS3ConfigForInvalidBucketNameTest) {
+  AWSMetadataHandler metadataHandler {repo};
+  std::string bucketName = "dummy_data";
+
+  ASSERT_ANY_THROW({
+    metadataHandler.getS3Config(bucketName);
+  });
+}
