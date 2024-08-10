@@ -10,4 +10,4 @@ add_library(${PROJECT_NAME}
 )
 
 target_link_directories(${PROJECT_NAME} PRIVATE "./include")
-target_link_libraries(${PROJECT_NAME} INTERFACE database)
+target_link_libraries(${PROJECT_NAME} ${AWSSDK_LINK_LIBRARIES} database)

@@ -8,6 +8,7 @@ private:
   rocksdb::DB *database__ {nullptr};
   std::vector<std::pair<std::string, size_t>> fields__;
 
+
   bool isFieldIndexed__(const std::string &fieldName) const;
   std::string getAndChangeFiledIndex__(const std::string &key);
 
@@ -30,8 +31,14 @@ private:
                               const std::string &key);
 
 public:
-  void addData_(const std::string &key, const QueryParserValue &value, const std::string &db) override;
+  void addData_(const std::string &key, 
+                const QueryParserValue &value, 
+                const std::string &db,
+                const DataType &dataType = DataType::JSON) override;
+
+  AllDataMap getAllKeysAndValues_(const std::string &db) override;
   QueryParserValue getData_(const std::string &key, const std::string &db) override;
+
   void deleteData_(const std::string &key, const std::string &db) override;
 
   const std::string getDatabaseName_() const override { return databaseName__; }

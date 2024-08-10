@@ -1,0 +1,175 @@
+{
+	"archive" : {},
+	"artifacts" : 
+	[
+		{
+			"path" : "src/core/backup/libbackup.a"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_library",
+			"target_link_libraries"
+		],
+		"files" : 
+		[
+			"src/core/backup/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 7,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 13,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"backtrace" : 2,
+					"fragment" : "-fPIC"
+				}
+			],
+			"defines" : 
+			[
+				{
+					"backtrace" : 2,
+					"define" : "AWS_AUTH_USE_IMPORT_EXPORT"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "AWS_CAL_USE_IMPORT_EXPORT"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "AWS_CHECKSUMS_USE_IMPORT_EXPORT"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "AWS_COMMON_USE_IMPORT_EXPORT"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "AWS_COMPRESSION_USE_IMPORT_EXPORT"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "AWS_CRT_CPP_USE_IMPORT_EXPORT"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "AWS_EVENT_STREAM_USE_IMPORT_EXPORT"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "AWS_HTTP_USE_IMPORT_EXPORT"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "AWS_IO_USE_IMPORT_EXPORT"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "AWS_MQTT_USE_IMPORT_EXPORT"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "AWS_S3_USE_IMPORT_EXPORT"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "AWS_SDKUTILS_USE_IMPORT_EXPORT"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "AWS_SDK_VERSION_MAJOR=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "AWS_SDK_VERSION_MINOR=11"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "AWS_SDK_VERSION_PATCH=124"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "AWS_USE_EPOLL"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "USE_IMPORT_EXPORT=1"
+				}
+			],
+			"language" : "CXX",
+			"sourceIndexes" : 
+			[
+				0,
+				1
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 2,
+			"id" : "utils::@f1b38b22aeb65474a6c5"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "database::@357c0a515c3de3bd73e9"
+		}
+	],
+	"id" : "backup::@56b06ba0e137295ebb8e",
+	"name" : "backup",
+	"nameOnDisk" : "libbackup.a",
+	"paths" : 
+	{
+		"build" : "src/core/backup",
+		"source" : "src/core/backup"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0,
+				1
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/core/backup/src/aws/aws_metadata_handler.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/core/backup/src/aws/aws_crud_handler.cpp",
+			"sourceGroupIndex" : 0
+		}
+	],
+	"type" : "STATIC_LIBRARY"
+}

@@ -2,6 +2,7 @@
 #include "../../../utils/include/constants.hpp"
 #include "../../../utils/include/logs/logger.hpp"
 #include "../../../utils/include/json/simple_json_parser.hpp"
+#include <rocksdb/iterator.h>
 
 bool RocksDBDataRepository::isActive_() {
   return database__ != nullptr;
@@ -163,33 +164,53 @@ std::string RocksDBDataRepository::getAndChangeFiledIndex__(const std::string &k
 
 void RocksDBDataRepository::addData_(const std::string &key,
                                      const QueryParserValue &value,
-                                     const std::string &db) {
-  std::string keyToStore = key;
-  std::string dataToStore;
+                                     const std::string &db,
+                                     const DataType &dataType) {
   setupDatabase__(db);
+  rocksdb::Status status;
+  
+  if (dataType == DataType::JSON) {
+    std::string keyToStore = key;
+    std::string dataToStore;
 
-  bool flag = isInteger__(key);
+    bool flag = isInteger__(key);
 
-  if (!flag) {
+    if (!flag) {
 
-    keyToStore += "_";
+      keyToStore += "_";
 
-    if (isFieldIndexed__(key)) {
-      keyToStore += getAndChangeFiledIndex__(key);
-    } else {
-      fields__.push_back({key, 1});
-      keyToStore += "1";
+      if (isFieldIndexed__(key)) {
+        keyToStore += getAndChangeFiledIndex__(key);
+      } else {
+        fields__.push_back({key, 1});
+        keyToStore += "1";
+      }
+    } 
+
+    dataToStore = addDataHelper__(value, keyToStore);
+
+    status = database__->Put(rocksdb::WriteOptions(), keyToStore, dataToStore);
+
+    if (!flag) {
+      notify_(*this, keyToStore);
     }
-  } 
-
-  dataToStore = addDataHelper__(value, keyToStore);
-
-  rocksdb::Status status = database__->Put(rocksdb::WriteOptions(), keyToStore, dataToStore);
-  checkStatus__(status);
-
-  if (!flag) {
-    notify_(*this, keyToStore);
+  } else {
+    status = database__->Put(rocksdb::WriteOptions(), key, value.getString_());
   }
+  checkStatus__(status);
+}
+
+RocksDBDataRepository::AllDataMap RocksDBDataRepository::getAllKeysAndValues_(const std::string &db) {
+  setupDatabase__(db);
+  AllDataMap result;
+
+  rocksdb::Iterator *it = database__->NewIterator(rocksdb::ReadOptions());
+  for (it->SeekToFirst(); it->Valid(); it->Next()) {
+    result[it->key().ToString()] = it->value().ToString();
+  }
+
+  checkStatus__(it->status());
+  return result;
 }
 
 QueryParserValue RocksDBDataRepository::getData_(const std::string &key, const std::string &db) {

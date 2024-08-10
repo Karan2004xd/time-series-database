@@ -277,3 +277,41 @@ TEST(RocksDBDataRepositorySuite, ListOfSimilarDataTypesTest) {
 
   std::filesystem::remove_all("/tmp/test_db");
 }
+
+TEST(RocksDBDataRepositorySuite, GetAllKeysAndValuesTest) {
+  RocksDBDataRepository repo;
+
+  std::string keys[] = {"key", "key_1"};
+
+  repo.addData_("key", {"value"}, "test_db");
+  repo.addData_("key_1", {"value_1"}, "test_db");
+
+  auto data = repo.getAllKeysAndValues_("test_db");
+  ASSERT_TRUE(data.size() == 2);
+  
+  bool flag;
+  for (const auto &d : data) {
+    flag = false;
+    for (int i = 0; i < 2; i++) {
+      std::string testKey = d.first;
+      if (testKey.find(keys[i]) != std::string::npos) {
+        flag = true;
+        break;
+      }
+    }
+  }
+
+  ASSERT_TRUE(flag);
+
+  std::filesystem::remove_all("/tmp/test_db");
+}
+
+TEST(RocksDBDataRepositorySuite, StoreSimpleStringData) {
+  RocksDBDataRepository repo;
+  repo.addData_("key", {"value"}, "test_db", DataRepository::DataType::SIMPLE_STRING);
+  auto data = repo.getData_("key", "test_db");
+
+  ASSERT_EQ(data.getString_(), "value");
+
+  std::filesystem::remove_all("/tmp/test_db");
+}

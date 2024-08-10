@@ -19,4 +19,6 @@ struct Constants {
   // backup constansts
   static constexpr String DEFAULT_S3_BUCKET_REGION = "eu-north-1";
   static constexpr String S3_TEST_BUCKET = "eu-north-1-test-bucket";
+  static constexpr String BUCKETS_METADATA_DB = "buckets_info";
+  static constexpr String BUCKET_DEFAULT_DUMMY_REGION = "default_region";
 };

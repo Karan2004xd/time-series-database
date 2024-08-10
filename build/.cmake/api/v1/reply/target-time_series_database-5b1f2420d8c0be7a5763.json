@@ -1,0 +1,722 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "time_series_database"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_executable",
+			"target_link_libraries",
+			"set_target_properties",
+			"include",
+			"find_package",
+			"aws_load_targets",
+			"find_dependency",
+			"set_property",
+			"boost_find_component"
+		],
+		"files" : 
+		[
+			"CMakeLists.txt",
+			"src/core/backup/CMakeLists.txt",
+			"/usr/lib/cmake/aws-cpp-sdk-core/aws-cpp-sdk-core-targets.cmake",
+			"/usr/lib/cmake/aws-cpp-sdk-core/aws-cpp-sdk-core-config.cmake",
+			"/usr/lib/cmake/AWSSDK/AWSSDKConfig.cmake",
+			"/usr/lib/aws-crt-cpp/cmake/shared/aws-crt-cpp-targets.cmake",
+			"/usr/lib/aws-crt-cpp/cmake/aws-crt-cpp-config.cmake",
+			"/usr/share/cmake/Modules/CMakeFindDependencyMacro.cmake",
+			"/usr/lib/aws-c-io/cmake/shared/aws-c-io-targets.cmake",
+			"/usr/lib/aws-c-io/cmake/aws-c-io-config.cmake",
+			"/usr/lib/aws-c-http/cmake/aws-c-http-config.cmake",
+			"/usr/lib/aws-c-http/cmake/shared/aws-c-http-targets.cmake",
+			"/usr/lib/aws-c-cal/cmake/shared/aws-c-cal-targets.cmake",
+			"/usr/lib/aws-c-cal/cmake/aws-c-cal-config.cmake",
+			"/usr/lib/aws-c-auth/cmake/shared/aws-c-auth-targets.cmake",
+			"/usr/lib/aws-c-auth/cmake/aws-c-auth-config.cmake",
+			"/usr/lib/aws-c-common/cmake/shared/aws-c-common-targets.cmake",
+			"/usr/lib/aws-c-common/cmake/aws-c-common-config.cmake",
+			"src/core/database/CMakeLists.txt",
+			"src/utils/CMakeLists.txt",
+			"/usr/lib/cmake/boost_log-1.83.0/boost_log-config.cmake",
+			"/usr/lib/cmake/Boost-1.83.0/BoostConfig.cmake",
+			"/usr/share/cmake/Modules/FindBoost.cmake"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 12,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 13,
+				"parent" : 0
+			},
+			{
+				"file" : 1
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 13,
+				"parent" : 3
+			},
+			{
+				"command" : 4,
+				"file" : 1,
+				"line" : 5,
+				"parent" : 3
+			},
+			{
+				"file" : 4,
+				"parent" : 5
+			},
+			{
+				"command" : 4,
+				"file" : 4,
+				"line" : 306,
+				"parent" : 6
+			},
+			{
+				"file" : 3,
+				"parent" : 7
+			},
+			{
+				"command" : 3,
+				"file" : 3,
+				"line" : 19,
+				"parent" : 8
+			},
+			{
+				"file" : 2,
+				"parent" : 9
+			},
+			{
+				"command" : 2,
+				"file" : 2,
+				"line" : 70,
+				"parent" : 10
+			},
+			{
+				"command" : 6,
+				"file" : 3,
+				"line" : 13,
+				"parent" : 8
+			},
+			{
+				"command" : 4,
+				"file" : 7,
+				"line" : 76,
+				"parent" : 12
+			},
+			{
+				"file" : 6,
+				"parent" : 13
+			},
+			{
+				"command" : 5,
+				"file" : 6,
+				"line" : 17,
+				"parent" : 14
+			},
+			{
+				"command" : 3,
+				"file" : 6,
+				"line" : 11,
+				"parent" : 15
+			},
+			{
+				"file" : 5,
+				"parent" : 16
+			},
+			{
+				"command" : 2,
+				"file" : 5,
+				"line" : 71,
+				"parent" : 17
+			},
+			{
+				"command" : 6,
+				"file" : 6,
+				"line" : 3,
+				"parent" : 14
+			},
+			{
+				"command" : 4,
+				"file" : 7,
+				"line" : 76,
+				"parent" : 19
+			},
+			{
+				"file" : 10,
+				"parent" : 20
+			},
+			{
+				"command" : 6,
+				"file" : 10,
+				"line" : 3,
+				"parent" : 21
+			},
+			{
+				"command" : 4,
+				"file" : 7,
+				"line" : 76,
+				"parent" : 22
+			},
+			{
+				"file" : 9,
+				"parent" : 23
+			},
+			{
+				"command" : 5,
+				"file" : 9,
+				"line" : 17,
+				"parent" : 24
+			},
+			{
+				"command" : 3,
+				"file" : 9,
+				"line" : 11,
+				"parent" : 25
+			},
+			{
+				"file" : 8,
+				"parent" : 26
+			},
+			{
+				"command" : 2,
+				"file" : 8,
+				"line" : 71,
+				"parent" : 27
+			},
+			{
+				"command" : 5,
+				"file" : 10,
+				"line" : 13,
+				"parent" : 21
+			},
+			{
+				"command" : 3,
+				"file" : 10,
+				"line" : 7,
+				"parent" : 29
+			},
+			{
+				"file" : 11,
+				"parent" : 30
+			},
+			{
+				"command" : 2,
+				"file" : 11,
+				"line" : 71,
+				"parent" : 31
+			},
+			{
+				"command" : 6,
+				"file" : 9,
+				"line" : 8,
+				"parent" : 24
+			},
+			{
+				"command" : 4,
+				"file" : 7,
+				"line" : 76,
+				"parent" : 33
+			},
+			{
+				"file" : 13,
+				"parent" : 34
+			},
+			{
+				"command" : 5,
+				"file" : 13,
+				"line" : 12,
+				"parent" : 35
+			},
+			{
+				"command" : 3,
+				"file" : 13,
+				"line" : 6,
+				"parent" : 36
+			},
+			{
+				"file" : 12,
+				"parent" : 37
+			},
+			{
+				"command" : 2,
+				"file" : 12,
+				"line" : 71,
+				"parent" : 38
+			},
+			{
+				"command" : 6,
+				"file" : 6,
+				"line" : 6,
+				"parent" : 14
+			},
+			{
+				"command" : 4,
+				"file" : 7,
+				"line" : 76,
+				"parent" : 40
+			},
+			{
+				"file" : 15,
+				"parent" : 41
+			},
+			{
+				"command" : 5,
+				"file" : 15,
+				"line" : 16,
+				"parent" : 42
+			},
+			{
+				"command" : 3,
+				"file" : 15,
+				"line" : 10,
+				"parent" : 43
+			},
+			{
+				"file" : 14,
+				"parent" : 44
+			},
+			{
+				"command" : 2,
+				"file" : 14,
+				"line" : 71,
+				"parent" : 45
+			},
+			{
+				"command" : 6,
+				"file" : 9,
+				"line" : 7,
+				"parent" : 24
+			},
+			{
+				"command" : 4,
+				"file" : 7,
+				"line" : 76,
+				"parent" : 47
+			},
+			{
+				"file" : 17,
+				"parent" : 48
+			},
+			{
+				"command" : 5,
+				"file" : 17,
+				"line" : 14,
+				"parent" : 49
+			},
+			{
+				"command" : 3,
+				"file" : 17,
+				"line" : 8,
+				"parent" : 50
+			},
+			{
+				"file" : 16,
+				"parent" : 51
+			},
+			{
+				"command" : 2,
+				"file" : 16,
+				"line" : 71,
+				"parent" : 52
+			},
+			{
+				"file" : 18
+			},
+			{
+				"command" : 1,
+				"file" : 18,
+				"line" : 10,
+				"parent" : 54
+			},
+			{
+				"file" : 19
+			},
+			{
+				"command" : 1,
+				"file" : 19,
+				"line" : 16,
+				"parent" : 56
+			},
+			{
+				"command" : 4,
+				"file" : 19,
+				"line" : 4,
+				"parent" : 56
+			},
+			{
+				"file" : 22,
+				"parent" : 58
+			},
+			{
+				"command" : 4,
+				"file" : 22,
+				"line" : 610,
+				"parent" : 59
+			},
+			{
+				"file" : 21,
+				"parent" : 60
+			},
+			{
+				"command" : 8,
+				"file" : 21,
+				"line" : 262,
+				"parent" : 61
+			},
+			{
+				"command" : 4,
+				"file" : 21,
+				"line" : 141,
+				"parent" : 62
+			},
+			{
+				"file" : 20,
+				"parent" : 63
+			},
+			{
+				"command" : 7,
+				"file" : 20,
+				"line" : 103,
+				"parent" : 64
+			},
+			{
+				"command" : 7,
+				"file" : 20,
+				"line" : 103,
+				"parent" : 64
+			},
+			{
+				"command" : 7,
+				"file" : 20,
+				"line" : 103,
+				"parent" : 64
+			},
+			{
+				"command" : 7,
+				"file" : 20,
+				"line" : 103,
+				"parent" : 64
+			},
+			{
+				"command" : 7,
+				"file" : 20,
+				"line" : 103,
+				"parent" : 64
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"backtrace" : 2,
+					"fragment" : "-fPIC"
+				}
+			],
+			"defines" : 
+			[
+				{
+					"backtrace" : 2,
+					"define" : "AWS_AUTH_USE_IMPORT_EXPORT"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "AWS_CAL_USE_IMPORT_EXPORT"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "AWS_CHECKSUMS_USE_IMPORT_EXPORT"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "AWS_COMMON_USE_IMPORT_EXPORT"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "AWS_COMPRESSION_USE_IMPORT_EXPORT"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "AWS_CRT_CPP_USE_IMPORT_EXPORT"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "AWS_EVENT_STREAM_USE_IMPORT_EXPORT"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "AWS_HTTP_USE_IMPORT_EXPORT"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "AWS_IO_USE_IMPORT_EXPORT"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "AWS_MQTT_USE_IMPORT_EXPORT"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "AWS_S3_USE_IMPORT_EXPORT"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "AWS_SDKUTILS_USE_IMPORT_EXPORT"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "AWS_SDK_VERSION_MAJOR=1"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "AWS_SDK_VERSION_MINOR=11"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "AWS_SDK_VERSION_PATCH=124"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "AWS_USE_EPOLL"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "USE_IMPORT_EXPORT=1"
+				}
+			],
+			"language" : "CXX",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 2,
+			"id" : "utils::@f1b38b22aeb65474a6c5"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "database::@357c0a515c3de3bd73e9"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "backup::@56b06ba0e137295ebb8e"
+		}
+	],
+	"id" : "time_series_database::@6890427a1f51a3e7e1df",
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "src/core/backup/libbackup.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "/usr/lib/libaws-cpp-sdk-s3.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "/usr/lib/libaws-cpp-sdk-core.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 11,
+				"fragment" : "/usr/lib/libaws-crt-cpp.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 18,
+				"fragment" : "/usr/lib/libaws-c-mqtt.so.1.0.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 18,
+				"fragment" : "/usr/lib/libaws-c-event-stream.so.1.0.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 18,
+				"fragment" : "/usr/lib/libaws-c-s3.so.1.0.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 18,
+				"fragment" : "/usr/lib/libaws-c-auth.so.1.0.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 18,
+				"fragment" : "/usr/lib/libaws-c-http.so.1.0.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 18,
+				"fragment" : "/usr/lib/libaws-c-io.so.1.0.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 28,
+				"fragment" : "/usr/lib/libs2n.so.1.0.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 32,
+				"fragment" : "/usr/lib/libaws-c-compression.so.1.0.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 18,
+				"fragment" : "/usr/lib/libaws-c-cal.so.1.0.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 39,
+				"fragment" : "/usr/lib/libcrypto.so",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 46,
+				"fragment" : "/usr/lib/libaws-c-sdkutils.so.1.0.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 18,
+				"fragment" : "/usr/lib/libaws-checksums.so.1.0.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 18,
+				"fragment" : "/usr/lib/libaws-c-common.so.1.0.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 53,
+				"fragment" : "-lpthread",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 53,
+				"fragment" : "-ldl",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 53,
+				"fragment" : "-lm",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 53,
+				"fragment" : "-lrt",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "src/core/database/libdatabase.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 55,
+				"fragment" : "src/utils/libutils.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 57,
+				"fragment" : "/usr/lib/libboost_log_setup.so.1.83.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 57,
+				"fragment" : "/usr/lib/libboost_log.so.1.83.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 65,
+				"fragment" : "/usr/lib/libboost_chrono.so.1.83.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 66,
+				"fragment" : "/usr/lib/libboost_filesystem.so.1.83.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 67,
+				"fragment" : "/usr/lib/libboost_atomic.so.1.83.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 68,
+				"fragment" : "/usr/lib/libboost_regex.so.1.83.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 69,
+				"fragment" : "/usr/lib/libboost_thread.so.1.83.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 55,
+				"fragment" : "-lrocksdb",
+				"role" : "libraries"
+			}
+		],
+		"language" : "CXX"
+	},
+	"name" : "time_series_database",
+	"nameOnDisk" : "time_series_database",
+	"paths" : 
+	{
+		"build" : ".",
+		"source" : "."
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/api/main.cpp",
+			"sourceGroupIndex" : 0
+		}
+	],
+	"type" : "EXECUTABLE"
+}
