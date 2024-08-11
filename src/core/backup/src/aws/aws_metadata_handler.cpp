@@ -94,12 +94,6 @@ void AWSMetadataHandler::setBucketsInfo__() {
   }
 }
 
-AWSMetadataHandler::AWSMetadataHandler(DataRepository &repo)
-: repo__(repo) {
-  Aws::InitAPI(options__);
-  setBucketsInfo__();
-}
-
 const std::string AWSMetadataHandler::getDefaultRegion_() const {
   return std::string(Constants::DEFAULT_S3_BUCKET_REGION);
 }
@@ -170,6 +164,12 @@ const std::string AWSMetadataHandler::getBucketNameUsingValueHash_(const std::st
   }
 
   return bucketName;
+}
+
+AWSMetadataHandler::AWSMetadataHandler(DataRepository &repo)
+: repo__(repo) {
+  Aws::InitAPI(options__);
+  setBucketsInfo__();
 }
 
 AWSMetadataHandler::~AWSMetadataHandler() {

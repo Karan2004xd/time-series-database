@@ -48,6 +48,12 @@ std::string AWSCrudHandler::getData_(const std::string &key) {
   Aws::S3::Model::GetObjectOutcome outcome = s3Client.GetObject(request);
 
   if (outcome.IsSuccess()) {
+    std::cout << "\nFetching object..." << std::endl;
+
+    std::cout << "Region: " << config.region << std::endl;
+    std::cout << "Bucket Name: " << bucketName << std::endl;
+    std::cout << "Object Key: " << key << std::endl;
+
     oss << outcome.GetResult().GetBody().rdbuf();
   } else {
     const auto &error = outcome.GetError();

@@ -4,9 +4,9 @@
 #include "../../../../core/database/include/rocksdb_data_repository.hpp"
 #include "../../../../utils/include/constants.hpp"
 
-RocksDBDataRepository repo;
 
 TEST(AWSMetadataHandlerSuite, GetDefaultRegionTest) {
+  RocksDBDataRepository repo;
   AWSMetadataHandler metadataHandler {repo};
   ASSERT_EQ(std::string(Constants::DEFAULT_S3_BUCKET_REGION), metadataHandler.getDefaultRegion_());
 
@@ -15,6 +15,7 @@ TEST(AWSMetadataHandlerSuite, GetDefaultRegionTest) {
 }
 
 TEST(AWSMetadataHandlerSuite, GetBucketNamesByRegionTest) {
+  RocksDBDataRepository repo;
   AWSMetadataHandler metadataHandler {repo};
   std::string region = "ap-northeast-1";
   auto vec = metadataHandler.getBucketNamesByRegion_(region);
@@ -27,9 +28,10 @@ TEST(AWSMetadataHandlerSuite, GetBucketNamesByRegionTest) {
 }
 
 TEST(AWSMetadataHandlerSuite, GetBucketRegionByNameTest) {
+  RocksDBDataRepository repo;
   AWSMetadataHandler metadataHandler {repo};
   std::string bucketName = std::string(Constants::S3_TEST_BUCKET);
-  std::string testRegion = "eu-north-1";
+  std::string testRegion = std::string(Constants::S3_TEST_BUCKET_REGION);
 
   ASSERT_EQ(testRegion, metadataHandler.getBucketRegionByName_(bucketName));
 
@@ -38,7 +40,9 @@ TEST(AWSMetadataHandlerSuite, GetBucketRegionByNameTest) {
 }
 
 TEST(AWSMetadataHandlerSuite, GetS3ConfigTest) {
+  RocksDBDataRepository repo;
   AWSMetadataHandler metadataHandler {repo};
+  
   std::string bucketName = std::string(Constants::S3_TEST_BUCKET);
   std::string testRegion = metadataHandler.getBucketRegionByName_(bucketName);
 
@@ -51,6 +55,7 @@ TEST(AWSMetadataHandlerSuite, GetS3ConfigTest) {
 }
 
 TEST(AWSMetadataHandlerSuite, GetS3ConfigForInvalidBucketNameTest) {
+  RocksDBDataRepository repo;
   AWSMetadataHandler metadataHandler {repo};
   std::string bucketName = "dummy_data";
 
@@ -63,6 +68,7 @@ TEST(AWSMetadataHandlerSuite, GetS3ConfigForInvalidBucketNameTest) {
 }
 
 TEST(AWSMetadataHandlerSuite, GetBucketNameByHashValueTest) {
+  RocksDBDataRepository repo;
   AWSMetadataHandler metadataHandler {repo};
 
   ASSERT_NO_THROW({

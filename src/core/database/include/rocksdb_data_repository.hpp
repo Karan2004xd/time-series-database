@@ -8,7 +8,6 @@ private:
   rocksdb::DB *database__ {nullptr};
   std::vector<std::pair<std::string, size_t>> fields__;
 
-
   bool isFieldIndexed__(const std::string &fieldName) const;
   std::string getAndChangeFiledIndex__(const std::string &key);
 
