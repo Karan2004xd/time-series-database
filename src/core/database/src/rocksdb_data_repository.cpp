@@ -220,7 +220,6 @@ QueryParserValue RocksDBDataRepository::getData_(const std::string &key, const s
   rocksdb::Status status = database__->Get(rocksdb::ReadOptions(), key, &retrivedValue);
 
   checkStatus__(status);
-  /* std::cout << retrivedValue << std::endl; */
   return {retrivedValue};
 }
 

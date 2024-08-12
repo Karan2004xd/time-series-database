@@ -15,10 +15,10 @@ private:
   std::atomic<bool> stopBackupThread__;
 
 protected: // for testing
-
+  std::pair<std::string, std::string> getKeyValuePair__(std::string &encodedJsonData);
 
 public:
-  AWSDataBackup();
+  AWSDataBackup() {}
   AWSDataBackup(const size_t &duration, const DurationType &durationType);
 
   void dataChanged_(DataRepository &source, const std::string &args) final override;

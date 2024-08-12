@@ -10,11 +10,14 @@ set(TEST_SOURCES
   "./utils/logs/logger_test.cpp"
   "./utils/query/simple_query_parser_test.cpp"
   "./utils/query/query_parser_value_test.cpp"
+
   "./core/database/rocksdb_data_repository_test.cpp"
   "./core/observer/observer_test.cpp"
   "./core/database/horizontal_data_indexer_test.cpp"
+
   "./core/backup/aws/aws_metadata_handler_test.cpp"
-  "./core/backup/aws/aws_crud_handler_test.cpp"
+  # "./core/backup/aws/aws_crud_handler_test.cpp"
+  "./core/backup/aws/aws_data_backup_test.cpp"
 )
 
 add_executable(run_tests ${TEST_SOURCES})

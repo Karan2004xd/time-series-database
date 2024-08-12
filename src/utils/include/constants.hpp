@@ -20,7 +20,13 @@ struct Constants {
   static constexpr String DEFAULT_S3_BUCKET_REGION = "eu-north-1";
   static constexpr String S3_TEST_BUCKET_REGION = "us-west-1";
   static constexpr String S3_TEST_BUCKET = "tsdb-us-west-1";
+
   static constexpr String BUCKETS_METADATA_DB = "buckets_info";
   static constexpr String BUCKET_DEFAULT_DUMMY_REGION = "default_region";
   static constexpr int DEFAULT_BACKUP_TIME = 60; // 60 seconds 
+  
+  static constexpr String BACKUP_DB = "backup_db";
+  static constexpr String BACKUP_AWS_FIELD = "field";
+  static constexpr String BACKUP_AWS_KEY = "key";
+  static constexpr String BACKUP_AWS_VALUE = "value";
 };
